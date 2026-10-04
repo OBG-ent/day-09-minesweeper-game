@@ -1,0 +1,134 @@
+/* =====================================================================
+   Minesweeper — styles
+   A modern dark frame around a classic-looking 3D board.
+   ===================================================================== */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f0f12;
+  --card: #191920;
+  --text: #f4f4f5;
+  --muted: #9a9aa3;
+  --gold: #f5b301;
+  --cell: #bdbdbd;          /* classic unrevealed gray  */
+  --cell-edge: #7d7d7d;
+  --revealed: #c9c9c9;      /* flat revealed gray      */
+  --cell: 32px;             /* JS uses this var for the grid; shrinks on mobile */
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 28px 12px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 660px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header { text-align: center; margin-bottom: 16px; }
+header h1 { font-size: 2rem; letter-spacing: -0.5px; }
+.tag { color: var(--muted); margin-top: 6px; }
+
+/* ---- difficulty + flag mode ---- */
+.controls {
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 14px;
+}
+.diff {
+  display: flex; gap: 6px; background: var(--card);
+  padding: 4px; border-radius: 12px;
+}
+.diff button, #flag-mode {
+  border: none; border-radius: 8px; cursor: pointer;
+  background: transparent; color: var(--text);
+  padding: 8px 14px; font-size: 0.9rem; font-weight: 600;
+}
+.diff button:hover { background: #2a2a33; }
+.diff button.active { background: var(--gold); color: #111; }
+#flag-mode {
+  background: var(--card); border: 1px solid #2c2c35; border-radius: 12px;
+}
+#flag-mode.on { border-color: var(--gold); color: var(--gold); }
+
+/* ---- HUD: mine counter, smiley reset, timer ---- */
+.hud { display: flex; gap: 16px; align-items: center; margin-bottom: 12px; }
+.counter {
+  background: #000; color: #ff2d2d; font-family: ui-monospace, monospace;
+  font-size: 1.3rem; padding: 8px 12px; border-radius: 8px;
+  border: 2px inset #3a3a3a;
+}
+#reset {
+  font-size: 1.7rem; background: var(--card); border: 1px solid #2c2c35;
+  border-radius: 10px; width: 56px; height: 56px; cursor: pointer;
+}
+#reset:hover { border-color: var(--gold); }
+
+/* ---- board ---- */
+#board-wrap {
+  background: var(--cell-edge); padding: 10px; border-radius: 12px;
+  max-width: 100%; overflow: auto;
+}
+#board { display: grid; }
+
+.cell {
+  width: var(--cell); height: var(--cell);
+  background: var(--cell);
+  border: 3px solid;
+  border-color: #ffffff var(--cell-edge) var(--cell-edge) #ffffff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.05rem; line-height: 1;
+  cursor: pointer; user-select: none; -webkit-user-select: none;
+  padding: 0;
+}
+.cell.revealed {
+  background: var(--revealed);
+  border: 1px solid #9a9a9a;
+  cursor: default;
+}
+.cell.mine-hit { background: #ff2d2d; }
+.cell .wrong { font-size: 0.9rem; }
+
+/* classic number colors */
+.cell.n1 { color: #1a1aff; }
+.cell.n2 { color: #0a7a0a; }
+.cell.n3 { color: #d32f2f; }
+.cell.n4 { color: #00008b; }
+.cell.n5 { color: #8b0000; }
+.cell.n6 { color: #008080; }
+.cell.n7 { color: #111111; }
+.cell.n8 { color: #616161; }
+
+#status { min-height: 1.6em; margin: 12px 0 4px; font-weight: 600; color: var(--gold); }
+
+/* ---- best times ---- */
+.best {
+  background: var(--card); border-radius: 14px;
+  padding: 14px 18px; margin-top: 8px; width: 100%; max-width: 420px;
+}
+.best h2 { font-size: 1rem; margin-bottom: 8px; }
+.best ul {
+  list-style: none; color: var(--muted); font-size: 0.9rem;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.best li b { color: var(--gold); }
+
+/* ---- how to play / footer ---- */
+.how { margin-top: 14px; color: var(--muted); font-size: 0.9rem; width: 100%; max-width: 420px; }
+.how summary { cursor: pointer; color: var(--text); font-weight: 600; }
+.how ul { margin: 8px 0 0 18px; display: flex; flex-direction: column; gap: 6px; }
+footer { margin-top: 18px; color: var(--muted); font-size: 0.8rem; text-align: center; }
+
+@media (max-width: 560px) {
+  :root { --cell: 27px; }
+  .cell { font-size: 0.9rem; }
+}

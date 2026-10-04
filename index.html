@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minesweeper — Day 9 of my daily coding journey</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>💣 Minesweeper</h1>
+      <p class="tag">The classic, rebuilt from scratch. Clear the field without blowing up.</p>
+    </header>
+
+    <div class="controls">
+      <div class="diff" id="diff">
+        <button type="button" data-diff="beginner" class="active">Beginner</button>
+        <button type="button" data-diff="intermediate">Intermediate</button>
+        <button type="button" data-diff="expert">Expert</button>
+      </div>
+      <button type="button" id="flag-mode" title="Tap cells to place flags instead of revealing">
+        🚩 Flag mode: off
+      </button>
+    </div>
+
+    <div class="hud">
+      <div class="counter" id="mine-count" title="Mines remaining">💣 010</div>
+      <button type="button" id="reset" title="New game">🙂</button>
+      <div class="counter" id="timer" title="Seconds elapsed">⏱ 000</div>
+    </div>
+
+    <div id="board-wrap"><div id="board" role="grid" aria-label="Minesweeper board"></div></div>
+    <p id="status" aria-live="polite"></p>
+
+    <section class="best">
+      <h2>🏆 Best times</h2>
+      <ul id="best-list"></ul>
+    </section>
+
+    <details class="how">
+      <summary>How to play</summary>
+      <ul>
+        <li><strong>Click / tap</strong> a square to reveal it. Numbers show how many mines touch that square.</li>
+        <li><strong>Right-click</strong> (or turn on Flag mode / long-press on mobile) to flag suspected mines.</li>
+        <li>Your <strong>first click is always safe</strong> — mines are placed after it.</li>
+        <li>Win by revealing every safe square, then chase your best time.</li>
+      </ul>
+    </details>
+
+    <footer>Day 9 featured build · plain HTML, CSS &amp; JavaScript · no libraries</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
